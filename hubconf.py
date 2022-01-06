@@ -4,11 +4,11 @@ import torch
 def generator(pretrained=True, device="cpu", progress=True, check_hash=True):
     from model import Generator
 
-    release_url = "https://github.com/bryandlee/animegan2-pytorch/raw/main/weights"
+    release_url = "https://github.com/dfrtfg/ponix"
     known = {
-        name: f"{release_url}/{name}.pt"
+        name: f"{release_url}/{name}.pkl"
         for name in [
-            'celeba_distill', 'face_paint_512_v1', 'face_paint_512_v2', 'paprika'
+            'network-snapshot-000483'
         ]
     }
 
@@ -20,7 +20,7 @@ def generator(pretrained=True, device="cpu", progress=True, check_hash=True):
         ckpt_url = known.get(pretrained, pretrained)
         pretrained = True
     else:
-        ckpt_url = known.get('face_paint_512_v2')
+        ckpt_url = known.get('network-snapshot-000483')
 
     if pretrained is True:
         state_dict = torch.hub.load_state_dict_from_url(
